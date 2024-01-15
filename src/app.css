@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.separator {
+    @apply after:block after:mt-2 after:w-full after:h-[1px] after:bg-white after:opacity-30;
+}
+
+@layer utilities {
+    .no-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scroll {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    
+    .position-0 {
+        @apply left-0 right-0 top-0 bottom-0;
+    }
+}
+
+:root {
+    @apply bg-dark text-text;
+
+    --sl-color-primary-800: rgba(182, 150, 227, 0.6);
+    --sl-color-primary-600: #B696E3;
+    --sl-color-secondary-600: #5DC095;
+    --sl-color-danger-400: rgba(235, 91, 142, 0.4);
+    --sl-color-danger-500: #EB5B8E;
+    --sl-color-danger-600: #D24074;
+    --sl-color-success-600: #50BFAB;
+    --sl-color-neutral-0: #252323;
+    --sl-color-neutral-1000: #FFFFFF;
+
+    --sl-input-border-color-focus: rgba(182, 150, 227, 0.8);
+    --sl-input-focus-ring-color: rgba(182, 150, 227, 0.4);
+}
+
+/* Some shoelace customization options */
+sl-button[variant="primary"]::part(base):hover
+{
+    background: var(--sl-color-primary-800);
+    border-color: var(--sl-color-primary-600);
+    color: var(--sl-color-primary-600);
+}
+
+sl-button[variant="default"]::part(base):hover
+{
+  background: var(--sl-color-primary-800);
+  border-color: var(--sl-color-primary-600);
+  color: var(--sl-color-primary-600);
+}
+
+sl-tooltip::part(body), sl-tooltip::part(base__arrow) {
+  background: var(--sl-color-neutral-0);
+  color: var(--sl-color-neutral-1000);
+  font-weight: 500;
+}
+
+.validity-styles sl-input,
+.validity-styles sl-select,
+.validity-styles sl-checkbox {
+  display: block;
+  margin-bottom: var(--sl-spacing-medium);
+}
+
+/* user invalid styles */
+.validity-styles sl-input[data-user-invalid]::part(base),
+.validity-styles sl-select[data-user-invalid]::part(combobox),
+.validity-styles sl-checkbox[data-user-invalid]::part(control) {
+  border-color: var(--sl-color-danger-600);
+}
+
+.validity-styles [data-user-invalid]::part(form-control-label),
+.validity-styles [data-user-invalid]::part(form-control-help-text),
+.validity-styles sl-checkbox[data-user-invalid]::part(label) {
+  color: var(--sl-color-danger-500);
+}
+
+.validity-styles sl-checkbox[data-user-invalid]::part(control) {
+  outline: none;
+}
+
+.validity-styles sl-input:focus-within[data-user-invalid]::part(base),
+.validity-styles sl-select:focus-within[data-user-invalid]::part(combobox),
+.validity-styles sl-checkbox:focus-within[data-user-invalid]::part(control) {
+  border-color: var(--sl-color-danger-600);
+  box-shadow: 0 0 0 var(--sl-focus-ring-width) var(--sl-color-danger-400);
+}
